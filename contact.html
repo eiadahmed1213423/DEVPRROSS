@@ -111,6 +111,28 @@
       border-color: #8aaeff;
     }
 
+    .home-btn {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      border: 1px solid rgba(95, 142, 255, 0.5);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: #e0e7ff;
+      font-weight: 600;
+    }
+
+    .home-btn:hover {
+      background: rgba(95, 142, 255, 0.18);
+      border-color: #8aaeff;
+      color: white;
+      text-shadow: 0 0 6px #5f8eff;
+      transform: translateY(-2px);
+    }
+
     .hero-section {
       margin-bottom: 4rem;
     }
@@ -384,6 +406,7 @@
       <span class="brand-light"></span>
     </div>
     <div class="nav-links">
+      <a href="index.html" class="home-btn" title="Home"><i class="fas fa-home" style="margin-right: 6px;"></i>Home</a>
       <a href="#">About</a>
       <a href="products.html">Products</a>
       <a href="#" style="color:white; text-shadow:0 0 4px #5f8eff;">Contact</a>

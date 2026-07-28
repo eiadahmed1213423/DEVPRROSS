@@ -175,11 +175,12 @@ body {
 
 
 .products {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  align-content: start;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    align-content: start;
+
 }
 
 
@@ -265,6 +266,63 @@ body {
   transform: translateY(-1px);
   box-shadow: 0 0 20px var(--green-glow);
 }
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .nav-right {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar input {
+    width: 100%;
+  }
+
+  .home-btn {
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 768px) {
+
+  .products {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+
+}
+@media (max-width:768px){
+
+.sidebar ul{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+}
+
+.sidebar ul li{
+    white-space:nowrap;
+    flex-shrink:0;
+}
+
+}
+
 </style>
 </head>
 <body>
@@ -282,10 +340,11 @@ body {
   <div class="sidebar">
     <h3>devices</h3>
     <ul>
-  <li class="active" data-brand="apple">Apple</li>
-  <li data-brand="acer">Acer</li>
-  <li data-brand="asus">Asus</li>
-  <li data-brand="dell">Dell</li>
+  <li class="active" data-brand="all">All</li>
+<li data-brand="apple">Apple</li>
+<li data-brand="acer">Acer</li>
+<li data-brand="asus">Asus</li>
+<li data-brand="dell">Dell</li>
 </ul> 
   </div>
 
@@ -319,6 +378,9 @@ body {
       <button class="btn">Buy</button>
     </div>
 
+
+
+
 <script>
 const categories = document.querySelectorAll(".sidebar li");
 const cards = document.querySelectorAll(".card");
@@ -332,7 +394,7 @@ categories.forEach(category => {
         const selectedBrand = category.dataset.brand;
 
         cards.forEach(card => {
-            if (card.dataset.brand === selectedBrand) {
+            if (selectedBrand === "all" || card.dataset.brand === selectedBrand) {
                 card.style.display = "block";
             } else {
                 card.style.display = "none";
@@ -341,6 +403,10 @@ categories.forEach(category => {
 
     });
 });
+
+
+
+
 </script>
 
 

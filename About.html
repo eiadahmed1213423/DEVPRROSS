@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DevPros - About</title>
+
+  <script src="https://kit.fontawesome.com/1165876da6.js" crossorigin="anonymous"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a12;
+      color: #fff;
+      min-height: 100vh;
+      opacity: 0;
+      transform: scale(0.98);
+      filter: blur(5px);
+      animation: pageLoad 0.9s ease forwards;
+      overflow-x: hidden;
+    }
+
+    @keyframes pageLoad {
+      to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+      }
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: scale(0.98);
+      filter: blur(4px);
+      transition: all 0.4s ease;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(108, 92, 231, 0.08), transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(108, 92, 231, 0.05), transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: rgba(10, 10, 18, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: transform 0.35s ease;
+    }
+
+    .navbar.hide {
+      transform: translateY(-100%);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #8aa1d6;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .nav-icons i {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .nav-icons i:hover {
+      color: #8aa1d6;
+    }
+
+    .nav-icons .logout-btn {
+      background: #8aa1d6;
+      color: #0a0a12;
+      padding: 8px 20px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: 0.3s ease;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-icons .logout-btn:hover {
+      background: #9cb2ea;
+      transform: translateY(-2px);
+    }
+
+    /* About Hero */
+    .about-hero {
+      padding: 100px 60px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .about-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+    }
+
+    .about-hero h1 span {
+      color: #8aa1d6;
+    }
+
+    .about-hero p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 700px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .about-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 28px;
+      padding: 40px 35px;
+      transition: 0.3s ease;
+    }
+
+    .about-card:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(138, 161, 214, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .about-card i {
+      font-size: 2.2rem;
+      color: #8aa1d6;
+      margin-bottom: 18px;
+    }
+
+    .about-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .about-card p {
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .about-card ul {
+      list-style: none;
+      margin-top: 16px;
+    }
+
+    .about-card ul li {
+      padding: 6px 0;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .about-card ul li i {
+      font-size: 0.8rem;
+      color: #8aa1d6;
+      margin: 0;
+    }
+
+    .team-section {
+      max-width: 1200px;
+      margin: 60px auto 0;
+      padding: 0 60px 80px;
+    }
+
+    .team-section h2 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 40px;
+      letter-spacing: -0.5px;
+    }
+
+    .team-section h2 span {
+      color: #8aa1d6;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    .team-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 24px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .team-card:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(138, 161, 214, 0.2);
+    }
+
+    .team-card i {
+      font-size: 2.8rem;
+      color: #8aa1d6;
+      margin-bottom: 12px;
+    }
+
+    .team-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .team-card p {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 50px 20px 40px;
+      text-align: center;
+      background: rgba(10, 10, 18, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 20px;
+    }
+
+    .footer h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .footer h2 span {
+      color: #8aa1d6;
+    }
+
+    .footer p {
+      font-size: 0.9rem;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .socials {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .socials i {
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    .socials i:hover {
+      color: #8aa1d6;
+      transform: translateY(-3px);
+    }
+
+    .chat-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #8aa1d6;
+      color: #0a0a12;
+      border: none;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 0 25px rgba(138, 161, 214, 0.2);
+      z-index: 999;
+    }
+
+    .chat-btn:hover {
+      transform: scale(1.05);
+      background: #9cb2ea;
+      box-shadow: 0 0 40px rgba(138, 161, 214, 0.4);
+    }
+
+    .circle-1 {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      background: rgba(138, 161, 214, 0.04);
+      top: -100px;
+      right: -100px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .circle-2 {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      background: rgba(138, 161, 214, 0.03);
+      bottom: -50px;
+      left: -100px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @media (max-width: 1024px) {
+      .about-hero {
+        padding: 80px 40px 40px;
+      }
+      .about-hero h1 {
+        font-size: 2.8rem;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 25px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .nav-links {
+        order: 3;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+      }
+      .nav-links a {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+      }
+      .nav-icons {
+        gap: 12px;
+      }
+      .nav-icons .logout-btn {
+        padding: 6px 14px;
+        font-size: 0.75rem;
+      }
+      .about-hero {
+        padding: 60px 25px 30px;
+      }
+      .about-hero h1 {
+        font-size: 2.2rem;
+      }
+      .about-card {
+        padding: 30px 25px;
+      }
+      .team-section {
+        padding: 0 25px 60px;
+      }
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .about-hero h1 {
+        font-size: 1.8rem;
+      }
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- decorative circles -->
+  <div class="circle-1"></div>
+  <div class="circle-2"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo">Dev<span>Pros</span></a>
+    <div class="nav-links">
+      <a href="index.html" class="page-link">Home</a>
+      <a href="about.html" class="page-link" style="color:#fff; background: rgba(255,255,255,0.05);">About</a>
+      <a href="products.html" class="page-link">Product</a>
+      <a href="contact.html" class="page-link">Contact</a>
+    </div>
+    <div class="nav-icons">
+      <i class="fas fa-search" id="searchIcon"></i>
+      <i class="fas fa-user" id="userIcon"></i>
+      <i class="fas fa-shopping-bag" id="cartIcon"></i>
+      <a href="loginpage.html" class="logout-btn page-link">Logout</a>
+    </div>
+  </nav>
+
+  <!-- About Hero -->
+  <section class="about-hero">
+    <h1>About <span>DevPros</span></h1>
+    <p>
+      We are a team of engineers, designers, and dreamers dedicated to building the future of portable computing. 
+      Our mission is to combine elegant design with uncompromising performance, creating tools that empower creators and professionals worldwide.
+    </p>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <i class="fas fa-rocket"></i>
+        <h3>Our Mission</h3>
+        <p>To deliver cutting-edge technology that anticipates your needs, delivering seamless performance and intuitive experiences. We believe in innovation that makes a real difference.</p>
+      </div>
+      <div class="about-card">
+        <i class="fas fa-eye"></i>
+        <h3>Our Vision</h3>
+        <p>To become the most trusted technology partner for creators, gamers, and businesses. We envision a world where hardware and software work in perfect harmony to unlock human potential.</p>
+      </div>
+      <div class="about-card">
+        <i class="fas fa-heart"></i>
+        <h3>Our Values</h3>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Quality first – no compromise</li>
+          <li><i class="fas fa-check-circle"></i> User-centric innovation</li>
+          <li><i class="fas fa-check-circle"></i> Transparency & trust</li>
+          <li><i class="fas fa-check-circle"></i> Sustainability and ethics</li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <i class="fas fa-flag"></i>
+        <h3>Our Story</h3>
+        <p>Founded in 2026, DevPros started as a small collective of engineers with a shared passion for premium hardware. Today, we serve thousands of customers across the globe, constantly pushing the boundaries of what's possible.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section">
+    <h2>Meet the <span>team</span></h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <i class="fas fa-user-tie"></i>
+        <h4>Eiad Ahmed</h4>
+        <p>CEO & Co-founder</p>
+      </div>
+      <div class="team-card">
+        <i class="fas fa-user-graduate"></i>
+        <h4>Eiad Ahmed</h4>
+        <p>Lead Engineer</p>
+      </div>
+      <div class="team-card">
+        <i class="fas fa-user-astronaut"></i>
+        <h4>Kaiser Bashar</h4>
+        <p>Head of Design</p>
+      </div>
+      <div class="team-card">
+        <i class="fas fa-user-cog"></i>
+        <h4>Eiad Ahmed</h4>
+        <p>Product Strategist</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <h2>Dev<span>Pros</span></h2>
+    <p>Building futuristic technology for creators, gamers, and innovators worldwide.</p>
+    <div class="socials">
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-discord"></i>
+    </div>
+  </footer>
+
+  <!-- Chat Button -->
+  <button class="chat-btn" id="chatBtn">
+    <i class="fas fa-comment-dots"></i>
+  </button>
+
+  <script>
+    // ===== NAVBAR HIDE/SHOW =====
+    let lastScroll = 0;
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+      let current = window.pageYOffset;
+      if (current > lastScroll && current > 80) {
+        navbar.classList.add("hide");
+      } else {
+        navbar.classList.remove("hide");
+      }
+      lastScroll = current;
+    });
+
+    // ===== PAGE TRANSITIONS =====
+    document.querySelectorAll(".page-link").forEach(link => {
+      link.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        const goTo = this.href;
+        setTimeout(() => {
+          window.location.href = goTo;
+        }, 450);
+      });
+    });
+
+    // ===== ICON CLICKS =====
+    document.getElementById("searchIcon").addEventListener("click", () => {
+      alert("🔍 Search our collection!");
+    });
+
+    document.getElementById("userIcon").addEventListener("click", () => {
+      alert("👤 View your profile");
+    });
+
+    document.getElementById("cartIcon").addEventListener("click", () => {
+      alert("🛒 View your cart");
+    });
+
+    // ===== CHAT BUTTON =====
+    document.getElementById("chatBtn").addEventListener("click", () => {
+      alert("💬 Chat with us!");
+    });
+
+    // ===== SOCIAL ICONS =====
+    document.querySelectorAll(".socials i").forEach(icon => {
+      icon.addEventListener("click", function() {
+        const platform = this.className.split('-')[2];
+        alert(`🌐 Follow us on ${platform.charAt(0).toUpperCase() + platform.slice(1)}!`);
+      });
+    });
+
+    console.log("📄 DevPros About page loaded");
+  </script>
+
+</body>
+</html>

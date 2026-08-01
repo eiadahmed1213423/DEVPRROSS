@@ -1,621 +1,152 @@
-<html lang="en"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Products Page</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500&display=swap');
-body{
-    opacity: 0;
-    transform: scale(0.98);
-    filter: blur(5px);
+/* ================= TABLETS ================= */
 
-    animation: pageLoad 0.9s ease forwards;
+@media (max-width: 992px){
+
+.navbar{
+    padding:15px 30px;
+    flex-wrap:wrap;
+    gap:15px;
 }
 
-@keyframes pageLoad{
-    to{
-        opacity: 1;
-        transform: scale(1);
-        filter: blur(0);
-    }
+.nav-links{
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
 }
 
-:root {
-  --bg: #0a0e1a;
-  --surface: #111827;
-  --surface2: #1a2236;
-  --border: rgba(99,179,237,0.15);
-  --accent: #3b82f6;
-  --accent-glow: rgba(59,130,246,0.35);
-  --green: #22c55e;
-  --green-glow: rgba(34,197,94,0.3);
-  --text: #e2e8f0;
-  --text-muted: #64748b;
-  --navbar-h: 60px;
+.about-hero{
+    padding:70px 30px 40px;
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  background: var(--bg);
-  font-family: 'Inter', sans-serif;
-  color: var(--text);
-  min-height: 100vh;
-  background-image:
-    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(59,130,246,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(99,102,241,0.07) 0%, transparent 60%);
+.about-grid{
+    grid-template-columns:1fr;
 }
 
-
-.navbar {
-  background: rgba(10,14,26,0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 30px;
-  height: var(--navbar-h);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+.team-section{
+    padding:0 30px 60px;
 }
-
-.logo {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 22px;
-  letter-spacing: 3px;
-  color: #fff;
-  text-shadow: 0 0 20px var(--accent-glow);
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.home-btn {
-  padding: 8px 18px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 1px;
-  transition: all 0.2s;
-  box-shadow: 0 0 14px var(--accent-glow);
-  position:relative;
-  right:193%;
-
-}
-
-.home-btn:hover {
-  background: #4f7ad6;
-  transform: translateY(-2px);
-  box-shadow: 0 0 10px var(--accent-glow);
-}
-
-.navbar input {
-  padding: 8px 14px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text);
-  font-size: 13px;
-  outline: none;
-  width: 200px;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.navbar input::placeholder { color: var(--text-muted); }
-
-.navbar input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-glow);
-}
-
-.container{
-    display:flex;
-    align-items:flex-start;
-    gap:20px;
-    max-width:1400px;
-    margin:24px auto;
-}
-
-.sidebar{
-    width:230px;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:22px;
-}
-
-.sidebar h3{
-    color:white;
-    margin-bottom:18px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    font-size:13px;
-}
-
-.filter-list{
-    list-style:none;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.filter-list li{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 15px;
-    border-radius:12px;
-    cursor:pointer;
-    transition:.25s;
-    border:1px solid transparent;
-    background:rgba(255,255,255,.02);
-}
-
-.filter-list li:hover{
-    background:rgba(59,130,246,.08);
-    border-color:rgba(59,130,246,.25);
-    transform:translateX(4px);
-}
-
-.filter-list li.active{
-    background:var(--accent);
-    color:white;
-    border-color:var(--accent);
-    box-shadow:0 0 18px rgba(59,130,246,.35);
-}
-
-.count{
-    background:rgba(255,255,255,.12);
-    padding:3px 9px;
-    border-radius:20px;
-    font-size:12px;
-}
-
-.filter-list li.active .count{
-    background:white;
-    color:var(--accent);
-}
-
-
-.products{
-    flex:1;
-    min-width:0;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:16px;
-}
-
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 15px 15px;
-  text-align: center;
-  transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(59,130,246,0.4);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(59,130,246,0.15);
-  background: var(--surface2);
-}
-
-.card:hover::before { opacity: 1; }
-
-.card img {
-  width: 270px;
-  height: 145px;
-  object-fit: contain;
-  margin-bottom: 12px;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
-  transition: filter 0.3s;
-  max-width: 100%;
-
-}
-
-.card:hover img {
-  filter: drop-shadow(0 6px 18px rgba(59,130,246,0.2));
-}
-
-.card h4 {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
-  color: #fff;
-}
-
-.price {
-  color: var(--green);
-  font-weight: 700;
-  font-size: 16px;
-  margin-top: 6px;
-  text-shadow: 0 0 10px var(--green-glow);
-}
-
-.btn {
-  margin-top: 12px;
-  padding: 7px 18px;
-  background: var(--green);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: all 0.2s;
-  box-shadow: 0 0 12px var(--green-glow);
-}
-
-.btn:hover {
-  background: #16a34a;
-  transform: translateY(-1px);
-  box-shadow: 0 0 20px var(--green-glow);
-}
-@media (max-width: 768px) {
-
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 15px;
-    gap: 15px;
-  }
-
-  .nav-right {
-    width: 100%;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .navbar input {
-    width: 100%;
-  }
-
-  .home-btn {
-    width: 100%;
-  }
 
 }
 
 
-@media (max-width: 768px) {
+/* ================= PHONES ================= */
 
-  .products {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    width: 100%;
-  }
-
-  .card img {
-    width: 100%;
-    height: auto;
-  }
-
-}
 @media (max-width:768px){
 
-.sidebar ul{
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
+.navbar{
+    flex-direction:column;
+    align-items:center;
+    padding:18px;
 }
 
-.sidebar ul li{
-    white-space:nowrap;
-    flex-shrink:0;
+.logo{
+    font-size:1.4rem;
 }
 
-}
-
-
-.price-filter{
-    margin-top:15px;
-}
-
-.price-value{
-    margin-bottom:12px;
-    font-size:14px;
-    color:var(--text);
-}
-
-#priceValue{
-    color:var(--green);
-    font-weight:bold;
-}
-
-#priceSlider{
+.nav-links{
     width:100%;
-    accent-color:var(--accent);
-    cursor:pointer;
-}
-#priceInput{
-    width: 60px;
-    margin-left:10px;
-    padding:6px;
-    background:var(--surface2);
-    color:var(--text);
-    border:1px solid var(--border);
-    border-radius:6px;
-    outline:none;
-
-}
-.contact-btn{
-  padding: 8px 11px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 1px;
-  transition: all 0.2s;
-  box-shadow: 0 0 14px var(--accent-glow);
-  position:relative;
-  right:105%;
-}
-.contact-btn:hover {
-  background: #4f7ad6;
-  transform: translateY(-2px);
-  box-shadow: 0 0 10px var(--accent-glow);
+    justify-content:center;
+    gap:8px;
 }
 
-.about-us{
-  padding: 8px 11px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 1px;
-  transition: all 0.2s;
-  box-shadow: 0 0 14px var(--accent-glow);
-  position:relative;
-  right:107%;
-}
-.about-us:hover{
-  background: #4f7ad6;
-  transform: translateY(-2px);
-  box-shadow: 0 0 10px var(--accent-glow);
+.nav-links a{
+    font-size:.8rem;
+    padding:7px 10px;
 }
 
-</style>
-</head>
-<body>
+.nav-icons{
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+}
 
-<div class="navbar">
-  <div class="logo">DEVPROS</div>
-  <div class="nav-right">
-    <button class="home-btn" onclick="window.location.href='index.html'">Home</button>
-    <button class="contact-btn" onclick="window.location.href='contact.html'">Contact</button>
-    <button class="about-us" onclick="window.location.href='About.html'">About Us</button>
-    <input type="text" placeholder="Search products...">
-  </div>
-</div>
+.logout-btn{
+    width:100%;
+    text-align:center;
+}
 
-<div class="container">
+.about-hero{
+    padding:50px 20px 30px;
+    text-align:center;
+}
 
-<div class="sidebar">
+.about-hero h1{
+    font-size:2rem;
+}
 
-<h3>Filter By Brand</h3>
+.about-hero p{
+    font-size:.95rem;
+}
 
-<ul class="filter-list">
-<li class="active" data-brand="all">
-<span>All</span>
-<span class="count">4</span>
-</li>
+.about-card{
+    padding:25px 20px;
+}
 
-<li data-brand="apple">
-<span>Apple</span>
-<span class="count">1</span>
-</li>
+.about-card h3{
+    font-size:1.3rem;
+}
 
-<li data-brand="acer">
-<span>Acer</span>
-<span class="count">1</span>
-</li>
+.team-section{
+    padding:0 20px 50px;
+}
 
-<li data-brand="asus">
-<span>Asus</span>
-<span class="count">1</span>
-</li>
+.team-section h2{
+    text-align:center;
+    font-size:1.8rem;
+}
 
-<li data-brand="dell">
-<span>Dell</span>
-<span class="count">1</span>
-</li>
+.team-grid{
+    grid-template-columns:1fr;
+}
 
-</ul>
+.footer{
+    padding:40px 20px;
+}
 
-<div class="price-filter">
+.socials{
+    gap:18px;
+}
 
-    <div class="price-value">
-        Max Price:
-        <input
-            type="number"
-            id="priceInput"
-            min="0"
-            max="700"
-            value="700"
-        >
-    </div>
-
-    <input
-        type="range"
-        id="priceSlider"
-        min="0"
-        max="700"
-        value="700"
-    >
-
-</div>
-</div>
-
-    <div class="products">
-
-        <div class="card" data-brand="apple" data-price="650">
-            <img src="Apple-MacBook-Air-2-up-front-240304-1536x612.webp" alt="Macbook Air 2025">
-            <h4>Macbook Air 2025</h4>
-            <div class="price">$650</div>
-            <button class="btn">Buy</button>
-        </div>
-
-        <div class="card" data-brand="acer" data-price="350">
-            <img src="cde9877d-9c98-4b2b-96c5-c23f9d94ec24.jpg" alt="Acer Aspire 5">
-            <h4>Acer Aspire 5</h4>
-            <div class="price">$350</div>
-            <button class="btn">Buy</button>
-        </div>
-
-        <div class="card" data-brand="asus" data-price="420">
-            <img src="res_4f9b3e6f45190e356241ff1361d3e248.avif" alt="Asus TUF F15">
-            <h4>Asus TUF F15</h4>
-            <div class="price">$420</div>
-            <button class="btn">Buy</button>
-        </div>
-
-        <div class="card" data-brand="dell" data-price="545">
-            <img src="download.webp" alt="Dell G17">
-            <h4>Dell G17</h4>
-            <div class="price">$545</div>
-            <button class="btn">Buy</button>
-        </div>
-
-    </div>
-
-</div>
-
-
-<script>
-const priceInput = document.getElementById("priceInput");
-const categories = document.querySelectorAll(".filter-list li");
-const cards = document.querySelectorAll(".card");
-
-const slider = document.getElementById("priceSlider");
-let currentBrand = "all";
-
-categories.forEach(category=>{
-
-category.addEventListener("click",()=>{
-
-categories.forEach(item=>item.classList.remove("active"));
-category.classList.add("active");
-
-currentBrand = category.dataset.brand;
-
-cards.forEach(card=>{
-
-if(currentBrand === "all" || card.dataset.brand === currentBrand){
-
-card.style.display="block";
-
-card.animate([
-{opacity:0,transform:"translateY(20px)"},
-{opacity:1,transform:"translateY(0)"}
-],{
-duration:300,
-fill:"forwards"
-});
+.chat-btn{
+    width:50px;
+    height:50px;
+    right:18px;
+    bottom:18px;
+}
 
 }
 
-else{
 
-card.style.display="none";
+/* ================= SMALL PHONES ================= */
 
+@media (max-width:480px){
+
+.about-hero h1{
+    font-size:1.6rem;
 }
 
-});
+.about-hero p{
+    font-size:.9rem;
+}
 
-});
+.about-card{
+    padding:20px 18px;
+}
 
-});
+.about-card h3{
+    font-size:1.15rem;
+}
 
-slider.addEventListener("input", () => {
+.team-card{
+    padding:22px 18px;
+}
 
-    priceInput.value = slider.value;
+.footer h2{
+    font-size:1.3rem;
+}
 
-    cards.forEach(card => {
+.footer p{
+    font-size:.85rem;
+}
 
-        const price = Number(card.dataset.price);
-
-        if (
-            (currentBrand === "all" || card.dataset.brand === currentBrand) &&
-            price <= Number(slider.value)
-        ) {
-
-            card.style.display = "block";
-
-        } else {
-
-            card.style.display = "none";
-
-        }
-
-    });
-
-});
-priceInput.addEventListener("input", () => {
-
-    slider.value = priceInput.value;
-
-    cards.forEach(card => {
-
-        const price = Number(card.dataset.price);
-
-        if (
-            (currentBrand === "all" || card.dataset.brand === currentBrand) &&
-            price <= Number(priceInput.value)
-        ) {
-
-            card.style.display = "block";
-
-        } else {
-
-            card.style.display = "none";
-
-        }
-
-    });
-
-});
-
-</script>
-
-
-
-
-</body></html>
+}

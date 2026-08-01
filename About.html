@@ -1,605 +1,621 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DevPros - About</title>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products Page</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500&display=swap');
+body{
+    opacity: 0;
+    transform: scale(0.98);
+    filter: blur(5px);
 
-  <script src="https://kit.fontawesome.com/1165876da6.js" crossorigin="anonymous"></script>
+    animation: pageLoad 0.9s ease forwards;
+}
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0a0a12;
-      color: #fff;
-      min-height: 100vh;
-      opacity: 0;
-      transform: scale(0.98);
-      filter: blur(5px);
-      animation: pageLoad 0.9s ease forwards;
-      overflow-x: hidden;
-    }
-
-    @keyframes pageLoad {
-      to {
+@keyframes pageLoad{
+    to{
         opacity: 1;
         transform: scale(1);
         filter: blur(0);
-      }
     }
+}
 
-    .fade-out {
-      opacity: 0;
-      transform: scale(0.98);
-      filter: blur(4px);
-      transition: all 0.4s ease;
-    }
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface2: #1a2236;
+  --border: rgba(99,179,237,0.15);
+  --accent: #3b82f6;
+  --accent-glow: rgba(59,130,246,0.35);
+  --green: #22c55e;
+  --green-glow: rgba(34,197,94,0.3);
+  --text: #e2e8f0;
+  --text-muted: #64748b;
+  --navbar-h: 60px;
+}
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 20% 30%, rgba(108, 92, 231, 0.08), transparent 50%),
-                  radial-gradient(circle at 80% 70%, rgba(108, 92, 231, 0.05), transparent 50%);
-      pointer-events: none;
-      z-index: -1;
-    }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 60px;
-      background: rgba(10, 10, 18, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      transition: transform 0.35s ease;
-    }
+body {
+  background: var(--bg);
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(59,130,246,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(99,102,241,0.07) 0%, transparent 60%);
+}
 
-    .navbar.hide {
-      transform: translateY(-100%);
-    }
 
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #fff;
-      text-decoration: none;
-      letter-spacing: -1px;
-    }
+.navbar {
+  background: rgba(10,14,26,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 30px;
+  height: var(--navbar-h);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-    .logo span {
-      color: #8aa1d6;
-    }
+.logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: #fff;
+  text-shadow: 0 0 20px var(--accent-glow);
+}
 
-    .nav-links {
-      display: flex;
-      gap: 25px;
-      align-items: center;
-    }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-    .nav-links a {
-      color: rgba(255, 255, 255, 0.6);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: 0.3s ease;
-      padding: 8px 12px;
-      border-radius: 8px;
-    }
+.home-btn {
+  padding: 8px 18px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  box-shadow: 0 0 14px var(--accent-glow);
+  position:relative;
+  right:193%;
 
-    .nav-links a:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
-    }
+}
 
-    .nav-icons {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
+.home-btn:hover {
+  background: #4f7ad6;
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
 
-    .nav-icons i {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.6);
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
+.navbar input {
+  padding: 8px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  width: 200px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
 
-    .nav-icons i:hover {
-      color: #8aa1d6;
-    }
+.navbar input::placeholder { color: var(--text-muted); }
 
-    .nav-icons .logout-btn {
-      background: #8aa1d6;
-      color: #0a0a12;
-      padding: 8px 20px;
-      border-radius: 10px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      transition: 0.3s ease;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-    }
+.navbar input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
 
-    .nav-icons .logout-btn:hover {
-      background: #9cb2ea;
-      transform: translateY(-2px);
-    }
+.container{
+    display:flex;
+    align-items:flex-start;
+    gap:20px;
+    max-width:1400px;
+    margin:24px auto;
+}
 
-    /* About Hero */
-    .about-hero {
-      padding: 100px 60px 60px;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
+.sidebar{
+    width:230px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+}
 
-    .about-hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      letter-spacing: -1.5px;
-    }
+.sidebar h3{
+    color:white;
+    margin-bottom:18px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-size:13px;
+}
 
-    .about-hero h1 span {
-      color: #8aa1d6;
-    }
+.filter-list{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
 
-    .about-hero p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 700px;
-    }
+.filter-list li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 15px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.25s;
+    border:1px solid transparent;
+    background:rgba(255,255,255,.02);
+}
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 20px;
-    }
+.filter-list li:hover{
+    background:rgba(59,130,246,.08);
+    border-color:rgba(59,130,246,.25);
+    transform:translateX(4px);
+}
 
-    .about-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 28px;
-      padding: 40px 35px;
-      transition: 0.3s ease;
-    }
+.filter-list li.active{
+    background:var(--accent);
+    color:white;
+    border-color:var(--accent);
+    box-shadow:0 0 18px rgba(59,130,246,.35);
+}
 
-    .about-card:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(138, 161, 214, 0.25);
-      transform: translateY(-4px);
-    }
+.count{
+    background:rgba(255,255,255,.12);
+    padding:3px 9px;
+    border-radius:20px;
+    font-size:12px;
+}
 
-    .about-card i {
-      font-size: 2.2rem;
-      color: #8aa1d6;
-      margin-bottom: 18px;
-    }
+.filter-list li.active .count{
+    background:white;
+    color:var(--accent);
+}
 
-    .about-card h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
 
-    .about-card p {
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
+.products{
+    flex:1;
+    min-width:0;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+}
 
-    .about-card ul {
-      list-style: none;
-      margin-top: 16px;
-    }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 15px 15px;
+  text-align: center;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
 
-    .about-card ul li {
-      padding: 6px 0;
-      color: rgba(255, 255, 255, 0.65);
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
 
-    .about-card ul li i {
-      font-size: 0.8rem;
-      color: #8aa1d6;
-      margin: 0;
-    }
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(59,130,246,0.4);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(59,130,246,0.15);
+  background: var(--surface2);
+}
 
-    .team-section {
-      max-width: 1200px;
-      margin: 60px auto 0;
-      padding: 0 60px 80px;
-    }
+.card:hover::before { opacity: 1; }
 
-    .team-section h2 {
-      font-size: 2.2rem;
-      font-weight: 600;
-      margin-bottom: 40px;
-      letter-spacing: -0.5px;
-    }
+.card img {
+  width: 270px;
+  height: 145px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  transition: filter 0.3s;
+  max-width: 100%;
 
-    .team-section h2 span {
-      color: #8aa1d6;
-    }
+}
 
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-    }
+.card:hover img {
+  filter: drop-shadow(0 6px 18px rgba(59,130,246,0.2));
+}
 
-    .team-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 24px;
-      padding: 30px 20px;
-      text-align: center;
-      transition: 0.3s ease;
-    }
+.card h4 {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  color: #fff;
+}
 
-    .team-card:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(138, 161, 214, 0.2);
-    }
+.price {
+  color: var(--green);
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 6px;
+  text-shadow: 0 0 10px var(--green-glow);
+}
 
-    .team-card i {
-      font-size: 2.8rem;
-      color: #8aa1d6;
-      margin-bottom: 12px;
-    }
+.btn {
+  margin-top: 12px;
+  padding: 7px 18px;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  box-shadow: 0 0 12px var(--green-glow);
+}
 
-    .team-card h4 {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
+.btn:hover {
+  background: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px var(--green-glow);
+}
+@media (max-width: 768px) {
 
-    .team-card p {
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 0.85rem;
-      margin-top: 4px;
-    }
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    gap: 15px;
+  }
 
-    /* Footer */
-    .footer {
-      padding: 50px 20px 40px;
-      text-align: center;
-      background: rgba(10, 10, 18, 0.95);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      margin-top: 20px;
-    }
+  .nav-right {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .footer h2 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
+  .navbar input {
+    width: 100%;
+  }
 
-    .footer h2 span {
-      color: #8aa1d6;
-    }
+  .home-btn {
+    width: 100%;
+  }
 
-    .footer p {
-      font-size: 0.9rem;
-      max-width: 500px;
-      margin: 0 auto;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.4);
-    }
+}
 
-    .socials {
-      margin-top: 25px;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-    }
 
-    .socials i {
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: 0.3s ease;
-      color: rgba(255, 255, 255, 0.2);
-    }
+@media (max-width: 768px) {
 
-    .socials i:hover {
-      color: #8aa1d6;
-      transform: translateY(-3px);
-    }
+  .products {
+    grid-template-columns: 1fr;
+  }
 
-    .chat-btn {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: #8aa1d6;
-      color: #0a0a12;
-      border: none;
-      border-radius: 50%;
-      width: 56px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      cursor: pointer;
-      transition: 0.3s ease;
-      box-shadow: 0 0 25px rgba(138, 161, 214, 0.2);
-      z-index: 999;
-    }
+  .card {
+    width: 100%;
+  }
 
-    .chat-btn:hover {
-      transform: scale(1.05);
-      background: #9cb2ea;
-      box-shadow: 0 0 40px rgba(138, 161, 214, 0.4);
-    }
+  .card img {
+    width: 100%;
+    height: auto;
+  }
 
-    .circle-1 {
-      position: fixed;
-      width: 400px;
-      height: 400px;
-      background: rgba(138, 161, 214, 0.04);
-      top: -100px;
-      right: -100px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: -1;
-    }
+}
+@media (max-width:768px){
 
-    .circle-2 {
-      position: fixed;
-      width: 300px;
-      height: 300px;
-      background: rgba(138, 161, 214, 0.03);
-      bottom: -50px;
-      left: -100px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: -1;
-    }
+.sidebar ul{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+}
 
-    @media (max-width: 1024px) {
-      .about-hero {
-        padding: 80px 40px 40px;
-      }
-      .about-hero h1 {
-        font-size: 2.8rem;
-      }
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+.sidebar ul li{
+    white-space:nowrap;
+    flex-shrink:0;
+}
 
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 15px 25px;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      .nav-links {
-        order: 3;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        width: 100%;
-      }
-      .nav-links a {
-        font-size: 0.8rem;
-        padding: 5px 10px;
-      }
-      .nav-icons {
-        gap: 12px;
-      }
-      .nav-icons .logout-btn {
-        padding: 6px 14px;
-        font-size: 0.75rem;
-      }
-      .about-hero {
-        padding: 60px 25px 30px;
-      }
-      .about-hero h1 {
-        font-size: 2.2rem;
-      }
-      .about-card {
-        padding: 30px 25px;
-      }
-      .team-section {
-        padding: 0 25px 60px;
-      }
-      .team-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
+}
 
-    @media (max-width: 480px) {
-      .about-hero h1 {
-        font-size: 1.8rem;
-      }
-      .team-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+
+.price-filter{
+    margin-top:15px;
+}
+
+.price-value{
+    margin-bottom:12px;
+    font-size:14px;
+    color:var(--text);
+}
+
+#priceValue{
+    color:var(--green);
+    font-weight:bold;
+}
+
+#priceSlider{
+    width:100%;
+    accent-color:var(--accent);
+    cursor:pointer;
+}
+#priceInput{
+    width: 60px;
+    margin-left:10px;
+    padding:6px;
+    background:var(--surface2);
+    color:var(--text);
+    border:1px solid var(--border);
+    border-radius:6px;
+    outline:none;
+
+}
+.contact-btn{
+  padding: 8px 11px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  box-shadow: 0 0 14px var(--accent-glow);
+  position:relative;
+  right:105%;
+}
+.contact-btn:hover {
+  background: #4f7ad6;
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.about-us{
+  padding: 8px 11px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  box-shadow: 0 0 14px var(--accent-glow);
+  position:relative;
+  right:107%;
+}
+.about-us:hover{
+  background: #4f7ad6;
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+</style>
 </head>
-
 <body>
 
-  <!-- decorative circles -->
-  <div class="circle-1"></div>
-  <div class="circle-2"></div>
+<div class="navbar">
+  <div class="logo">DEVPROS</div>
+  <div class="nav-right">
+    <button class="home-btn" onclick="window.location.href='index.html'">Home</button>
+    <button class="contact-btn" onclick="window.location.href='contact.html'">Contact</button>
+    <button class="about-us" onclick="window.location.href='About.html'">About Us</button>
+    <input type="text" placeholder="Search products...">
+  </div>
+</div>
 
-  <!-- Navbar -->
-  <nav class="navbar" id="navbar">
-    <a href="index.html" class="logo">Dev<span>Pros</span></a>
-    <div class="nav-links">
-      <a href="index.html" class="page-link">Home</a>
-      <a href="about.html" class="page-link" style="color:#fff; background: rgba(255,255,255,0.05);">About</a>
-      <a href="products.html" class="page-link">Product</a>
-      <a href="contact.html" class="page-link">Contact</a>
+<div class="container">
+
+<div class="sidebar">
+
+<h3>Filter By Brand</h3>
+
+<ul class="filter-list">
+<li class="active" data-brand="all">
+<span>All</span>
+<span class="count">4</span>
+</li>
+
+<li data-brand="apple">
+<span>Apple</span>
+<span class="count">1</span>
+</li>
+
+<li data-brand="acer">
+<span>Acer</span>
+<span class="count">1</span>
+</li>
+
+<li data-brand="asus">
+<span>Asus</span>
+<span class="count">1</span>
+</li>
+
+<li data-brand="dell">
+<span>Dell</span>
+<span class="count">1</span>
+</li>
+
+</ul>
+
+<div class="price-filter">
+
+    <div class="price-value">
+        Max Price:
+        <input
+            type="number"
+            id="priceInput"
+            min="0"
+            max="700"
+            value="700"
+        >
     </div>
-    <div class="nav-icons">
-      <i class="fas fa-search" id="searchIcon"></i>
-      <i class="fas fa-user" id="userIcon"></i>
-      <i class="fas fa-shopping-bag" id="cartIcon"></i>
-      <a href="loginpage.html" class="logout-btn page-link">Logout</a>
+
+    <input
+        type="range"
+        id="priceSlider"
+        min="0"
+        max="700"
+        value="700"
+    >
+
+</div>
+</div>
+
+    <div class="products">
+
+        <div class="card" data-brand="apple" data-price="650">
+            <img src="Apple-MacBook-Air-2-up-front-240304-1536x612.webp" alt="Macbook Air 2025">
+            <h4>Macbook Air 2025</h4>
+            <div class="price">$650</div>
+            <button class="btn">Buy</button>
+        </div>
+
+        <div class="card" data-brand="acer" data-price="350">
+            <img src="cde9877d-9c98-4b2b-96c5-c23f9d94ec24.jpg" alt="Acer Aspire 5">
+            <h4>Acer Aspire 5</h4>
+            <div class="price">$350</div>
+            <button class="btn">Buy</button>
+        </div>
+
+        <div class="card" data-brand="asus" data-price="420">
+            <img src="res_4f9b3e6f45190e356241ff1361d3e248.avif" alt="Asus TUF F15">
+            <h4>Asus TUF F15</h4>
+            <div class="price">$420</div>
+            <button class="btn">Buy</button>
+        </div>
+
+        <div class="card" data-brand="dell" data-price="545">
+            <img src="download.webp" alt="Dell G17">
+            <h4>Dell G17</h4>
+            <div class="price">$545</div>
+            <button class="btn">Buy</button>
+        </div>
+
     </div>
-  </nav>
 
-  <!-- About Hero -->
-  <section class="about-hero">
-    <h1>About <span>DevPros</span></h1>
-    <p>
-      We are a team of engineers, designers, and dreamers dedicated to building the future of portable computing. 
-      Our mission is to combine elegant design with uncompromising performance, creating tools that empower creators and professionals worldwide.
-    </p>
+</div>
 
-    <div class="about-grid">
-      <div class="about-card">
-        <i class="fas fa-rocket"></i>
-        <h3>Our Mission</h3>
-        <p>To deliver cutting-edge technology that anticipates your needs, delivering seamless performance and intuitive experiences. We believe in innovation that makes a real difference.</p>
-      </div>
-      <div class="about-card">
-        <i class="fas fa-eye"></i>
-        <h3>Our Vision</h3>
-        <p>To become the most trusted technology partner for creators, gamers, and businesses. We envision a world where hardware and software work in perfect harmony to unlock human potential.</p>
-      </div>
-      <div class="about-card">
-        <i class="fas fa-heart"></i>
-        <h3>Our Values</h3>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> Quality first – no compromise</li>
-          <li><i class="fas fa-check-circle"></i> User-centric innovation</li>
-          <li><i class="fas fa-check-circle"></i> Transparency & trust</li>
-          <li><i class="fas fa-check-circle"></i> Sustainability and ethics</li>
-        </ul>
-      </div>
-      <div class="about-card">
-        <i class="fas fa-flag"></i>
-        <h3>Our Story</h3>
-        <p>Founded in 2026, DevPros started as a small collective of engineers with a shared passion for premium hardware. Today, we serve thousands of customers across the globe, constantly pushing the boundaries of what's possible.</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- Team Section -->
-  <section class="team-section">
-    <h2>Meet the <span>team</span></h2>
-    <div class="team-grid">
-      <div class="team-card">
-        <i class="fas fa-user-tie"></i>
-        <h4>Eiad Ahmed</h4>
-        <p>CEO & Co-founder</p>
-      </div>
-      <div class="team-card">
-        <i class="fas fa-user-graduate"></i>
-        <h4>Eiad Ahmed</h4>
-        <p>Lead Engineer</p>
-      </div>
-      <div class="team-card">
-        <i class="fas fa-user-astronaut"></i>
-        <h4>Kaiser Bashar</h4>
-        <p>Head of Design</p>
-      </div>
-      <div class="team-card">
-        <i class="fas fa-user-cog"></i>
-        <h4>Eiad Ahmed</h4>
-        <p>Product Strategist</p>
-      </div>
-    </div>
-  </section>
+<script>
+const priceInput = document.getElementById("priceInput");
+const categories = document.querySelectorAll(".filter-list li");
+const cards = document.querySelectorAll(".card");
 
-  <!-- Footer -->
-  <footer class="footer">
-    <h2>Dev<span>Pros</span></h2>
-    <p>Building futuristic technology for creators, gamers, and innovators worldwide.</p>
-    <div class="socials">
-      <i class="fab fa-facebook-f"></i>
-      <i class="fab fa-instagram"></i>
-      <i class="fab fa-twitter"></i>
-      <i class="fab fa-discord"></i>
-    </div>
-  </footer>
+const slider = document.getElementById("priceSlider");
+let currentBrand = "all";
 
-  <!-- Chat Button -->
-  <button class="chat-btn" id="chatBtn">
-    <i class="fas fa-comment-dots"></i>
-  </button>
+categories.forEach(category=>{
 
-  <script>
-    // ===== NAVBAR HIDE/SHOW =====
-    let lastScroll = 0;
-    const navbar = document.getElementById("navbar");
+category.addEventListener("click",()=>{
 
-    window.addEventListener("scroll", () => {
-      let current = window.pageYOffset;
-      if (current > lastScroll && current > 80) {
-        navbar.classList.add("hide");
-      } else {
-        navbar.classList.remove("hide");
-      }
-      lastScroll = current;
+categories.forEach(item=>item.classList.remove("active"));
+category.classList.add("active");
+
+currentBrand = category.dataset.brand;
+
+cards.forEach(card=>{
+
+if(currentBrand === "all" || card.dataset.brand === currentBrand){
+
+card.style.display="block";
+
+card.animate([
+{opacity:0,transform:"translateY(20px)"},
+{opacity:1,transform:"translateY(0)"}
+],{
+duration:300,
+fill:"forwards"
+});
+
+}
+
+else{
+
+card.style.display="none";
+
+}
+
+});
+
+});
+
+});
+
+slider.addEventListener("input", () => {
+
+    priceInput.value = slider.value;
+
+    cards.forEach(card => {
+
+        const price = Number(card.dataset.price);
+
+        if (
+            (currentBrand === "all" || card.dataset.brand === currentBrand) &&
+            price <= Number(slider.value)
+        ) {
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
     });
 
-    // ===== PAGE TRANSITIONS =====
-    document.querySelectorAll(".page-link").forEach(link => {
-      link.addEventListener("click", function(e) {
-        e.preventDefault();
-        document.body.classList.add("fade-out");
-        const goTo = this.href;
-        setTimeout(() => {
-          window.location.href = goTo;
-        }, 450);
-      });
+});
+priceInput.addEventListener("input", () => {
+
+    slider.value = priceInput.value;
+
+    cards.forEach(card => {
+
+        const price = Number(card.dataset.price);
+
+        if (
+            (currentBrand === "all" || card.dataset.brand === currentBrand) &&
+            price <= Number(priceInput.value)
+        ) {
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
     });
 
-    // ===== ICON CLICKS =====
-    document.getElementById("searchIcon").addEventListener("click", () => {
-      alert("🔍 Search our collection!");
-    });
+});
 
-    document.getElementById("userIcon").addEventListener("click", () => {
-      alert("👤 View your profile");
-    });
+</script>
 
-    document.getElementById("cartIcon").addEventListener("click", () => {
-      alert("🛒 View your cart");
-    });
 
-    // ===== CHAT BUTTON =====
-    document.getElementById("chatBtn").addEventListener("click", () => {
-      alert("💬 Chat with us!");
-    });
 
-    // ===== SOCIAL ICONS =====
-    document.querySelectorAll(".socials i").forEach(icon => {
-      icon.addEventListener("click", function() {
-        const platform = this.className.split('-')[2];
-        alert(`🌐 Follow us on ${platform.charAt(0).toUpperCase() + platform.slice(1)}!`);
-      });
-    });
 
-    console.log("📄 DevPros About page loaded");
-  </script>
-
-</body>
-</html>
+</body></html>

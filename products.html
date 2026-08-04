@@ -1,4 +1,6 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Products Page</title>
@@ -412,6 +414,42 @@ body {
   box-shadow: 0 0 10px var(--accent-glow);
 }
 
+/* ===== Added: Spec filters (RAM / Processor / GPU / Screen / Storage) ===== */
+.spec-filter{
+    margin-top:22px;
+}
+
+.spec-filter label{
+    display:block;
+    font-size:12px;
+    color:var(--text-muted);
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:6px;
+}
+
+.spec-filter select{
+    width:100%;
+    padding:9px 10px;
+    background:var(--surface2);
+    border:1px solid var(--border);
+    border-radius:8px;
+    color:var(--text);
+    font-size:13px;
+    outline:none;
+    margin-bottom:14px;
+    cursor:pointer;
+    transition:border-color 0.2s, box-shadow 0.2s;
+}
+
+.spec-filter select:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-glow);
+}
+
+.spec-filter select:last-child{
+    margin-bottom:0;
+}
 </style>
 </head>
 <body>
@@ -482,32 +520,90 @@ body {
     >
 
 </div>
+
+<!-- ===== Added: Spec filters ===== -->
+<div class="spec-filter">
+
+    <h3 style="margin-top:4px;">Specifications</h3>
+
+    <label for="ramFilter">RAM</label>
+    <select id="ramFilter">
+        <option value="all">All</option>
+        <option value="8GB">8GB</option>
+        <option value="16GB">16GB</option>
+        <option value="32GB">32GB</option>
+    </select>
+
+    <label for="processorFilter">Processor</label>
+    <select id="processorFilter">
+        <option value="all">All</option>
+        <option value="i3">Intel i3</option>
+        <option value="i5">Intel i5</option>
+        <option value="i7">Intel i7</option>
+        <option value="i9">Intel i9</option>
+        <option value="ryzen3">AMD Ryzen 3</option>
+        <option value="ryzen5">AMD Ryzen 5</option>
+        <option value="ryzen7">AMD Ryzen 7</option>
+        <option value="ryzen9">AMD Ryzen 9</option>
+    </select>
+
+    <label for="gpuFilter">GPU (VRAM)</label>
+    <select id="gpuFilter">
+        <option value="all">All</option>
+        <option value="2GB">2GB</option>
+        <option value="4GB">4GB</option>
+        <option value="6GB">6GB</option>
+        <option value="8GB">8GB</option>
+    </select>
+
+    <label for="screenFilter">Screen Size</label>
+    <select id="screenFilter">
+        <option value="all">All</option>
+        <option value="15.6">15.6"</option>
+        <option value="17.6">17.6"</option>
+    </select>
+
+    <label for="storageFilter">Storage</label>
+    <select id="storageFilter">
+        <option value="all">All</option>
+        <option value="128GB">128GB</option>
+        <option value="256GB">256GB</option>
+        <option value="512GB">512GB</option>
+        <option value="1TB">1TB</option>
+    </select>
+
+</div>
+
 </div>
 
     <div class="products">
 
-        <div class="card" data-brand="apple" data-price="650">
+        <div class="card" data-brand="apple" data-price="650"
+          data-ram="8GB" data-processor="none" data-gpu="none" data-screen="13.6" data-storage="256GB">
             <img src="Apple-MacBook-Air-2-up-front-240304-1536x612.webp" alt="Macbook Air 2025">
             <h4>Macbook Air 2025</h4>
             <div class="price">$650</div>
             <button class="btn">Buy</button>
         </div>
 
-        <div class="card" data-brand="acer" data-price="350">
+        <div class="card" data-brand="acer" data-price="350"
+          data-ram="8GB" data-processor="i5" data-gpu="2GB" data-screen="15.6" data-storage="512GB">
             <img src="cde9877d-9c98-4b2b-96c5-c23f9d94ec24.jpg" alt="Acer Aspire 5">
             <h4>Acer Aspire 5</h4>
             <div class="price">$350</div>
             <button class="btn">Buy</button>
         </div>
 
-        <div class="card" data-brand="asus" data-price="420">
+        <div class="card" data-brand="asus" data-price="420"
+            data-ram="16GB" data-processor="i7" data-gpu="4GB" data-screen="15.6" data-storage="512GB">
             <img src="res_4f9b3e6f45190e356241ff1361d3e248.avif" alt="Asus TUF F15">
             <h4>Asus TUF F15</h4>
             <div class="price">$420</div>
             <button class="btn">Buy</button>
         </div>
 
-        <div class="card" data-brand="dell" data-price="545">
+        <div class="card" data-brand="dell" data-price="545"
+            data-ram="16GB" data-processor="i7" data-gpu="6GB" data-screen="17.6" data-storage="1TB">
             <img src="download.webp" alt="Dell G17">
             <h4>Dell G17</h4>
             <div class="price">$545</div>
@@ -527,6 +623,57 @@ const cards = document.querySelectorAll(".card");
 const slider = document.getElementById("priceSlider");
 let currentBrand = "all";
 
+/* ===== Added: spec filter elements ===== */
+const ramFilter = document.getElementById("ramFilter");
+const processorFilter = document.getElementById("processorFilter");
+const gpuFilter = document.getElementById("gpuFilter");
+const screenFilter = document.getElementById("screenFilter");
+const storageFilter = document.getElementById("storageFilter");
+
+/* ===== Added: single shared filter function used by everything below ===== */
+function applyAllFilters(){
+
+    const maxPrice = Number(priceInput.value);
+    const ramVal = ramFilter.value;
+    const processorVal = processorFilter.value;
+    const gpuVal = gpuFilter.value;
+    const screenVal = screenFilter.value;
+    const storageVal = storageFilter.value;
+
+    cards.forEach(card=>{
+
+        const price = Number(card.dataset.price);
+
+        const matchesBrand = currentBrand === "all" || card.dataset.brand === currentBrand;
+        const matchesPrice = price <= maxPrice;
+        const matchesRam = ramVal === "all" || card.dataset.ram === ramVal;
+        const matchesProcessor = processorVal === "all" || card.dataset.processor === processorVal;
+        const matchesGpu = gpuVal === "all" || card.dataset.gpu === gpuVal;
+        const matchesScreen = screenVal === "all" || card.dataset.screen === screenVal;
+        const matchesStorage = storageVal === "all" || card.dataset.storage === storageVal;
+
+        if(matchesBrand && matchesPrice && matchesRam && matchesProcessor && matchesGpu && matchesScreen && matchesStorage){
+
+            card.style.display = "block";
+
+            card.animate([
+                {opacity:0,transform:"translateY(20px)"},
+                {opacity:1,transform:"translateY(0)"}
+            ],{
+                duration:300,
+                fill:"forwards"
+            });
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
 categories.forEach(category=>{
 
 category.addEventListener("click",()=>{
@@ -536,29 +683,7 @@ category.classList.add("active");
 
 currentBrand = category.dataset.brand;
 
-cards.forEach(card=>{
-
-if(currentBrand === "all" || card.dataset.brand === currentBrand){
-
-card.style.display="block";
-
-card.animate([
-{opacity:0,transform:"translateY(20px)"},
-{opacity:1,transform:"translateY(0)"}
-],{
-duration:300,
-fill:"forwards"
-});
-
-}
-
-else{
-
-card.style.display="none";
-
-}
-
-});
+applyAllFilters();
 
 });
 
@@ -568,50 +693,23 @@ slider.addEventListener("input", () => {
 
     priceInput.value = slider.value;
 
-    cards.forEach(card => {
-
-        const price = Number(card.dataset.price);
-
-        if (
-            (currentBrand === "all" || card.dataset.brand === currentBrand) &&
-            price <= Number(slider.value)
-        ) {
-
-            card.style.display = "block";
-
-        } else {
-
-            card.style.display = "none";
-
-        }
-
-    });
+    applyAllFilters();
 
 });
 priceInput.addEventListener("input", () => {
 
     slider.value = priceInput.value;
 
-    cards.forEach(card => {
-
-        const price = Number(card.dataset.price);
-
-        if (
-            (currentBrand === "all" || card.dataset.brand === currentBrand) &&
-            price <= Number(priceInput.value)
-        ) {
-
-            card.style.display = "block";
-
-        } else {
-
-            card.style.display = "none";
-
-        }
-
-    });
+    applyAllFilters();
 
 });
+
+
+ramFilter.addEventListener("change", applyAllFilters);
+processorFilter.addEventListener("change", applyAllFilters);
+gpuFilter.addEventListener("change", applyAllFilters);
+screenFilter.addEventListener("change", applyAllFilters);
+storageFilter.addEventListener("change", applyAllFilters);
 
 </script>
 

@@ -115,7 +115,7 @@ body {
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.navbar input::placeholder { color: var(--text-muted); }
+.navbar input::placeholder { color: var(--text-muted); f
 
 .navbar input:focus {
   border-color: var(--accent);
@@ -414,7 +414,7 @@ body {
   box-shadow: 0 0 10px var(--accent-glow);
 }
 
-/* ===== Added: Spec filters (RAM / Processor / GPU / Screen / Storage) ===== */
+
 .spec-filter{
     margin-top:22px;
 }
@@ -521,7 +521,7 @@ body {
 
 </div>
 
-<!-- ===== Added: Spec filters ===== -->
+
 <div class="spec-filter">
 
     <h3 style="margin-top:4px;">Specifications</h3>
@@ -623,14 +623,14 @@ const cards = document.querySelectorAll(".card");
 const slider = document.getElementById("priceSlider");
 let currentBrand = "all";
 
-/* ===== Added: spec filter elements ===== */
+
 const ramFilter = document.getElementById("ramFilter");
 const processorFilter = document.getElementById("processorFilter");
 const gpuFilter = document.getElementById("gpuFilter");
 const screenFilter = document.getElementById("screenFilter");
 const storageFilter = document.getElementById("storageFilter");
 
-/* ===== Added: single shared filter function used by everything below ===== */
+
 function applyAllFilters(){
 
     const maxPrice = Number(priceInput.value);

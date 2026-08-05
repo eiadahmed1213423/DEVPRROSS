@@ -38,11 +38,16 @@ body{
 
 * { margin:0; padding:0; box-sizing:border-box; }
 
+html{
+  -webkit-text-size-adjust:100%;
+}
+
 body {
   background: var(--bg);
   font-family: 'Inter', sans-serif;
   color: var(--text);
   min-height: 100vh;
+  overflow-x:hidden;
   background-image:
     radial-gradient(ellipse 80% 50% at 20% 10%, rgba(59,130,246,0.08) 0%, transparent 60%),
     radial-gradient(ellipse 60% 40% at 80% 80%, rgba(99,102,241,0.07) 0%, transparent 60%);
@@ -55,13 +60,60 @@ body {
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   padding: 0 30px;
-  height: var(--navbar-h);
+  min-height: var(--navbar-h);
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 300;
+  flex-wrap: wrap;
+}
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.menu-toggle{
+  width:36px;
+  height:36px;
+  background:transparent;
+  border:1px solid var(--border);
+  border-radius:8px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+  cursor:pointer;
+  transition:.2s;
+  flex-shrink:0;
+}
+
+.menu-toggle:hover{
+  border-color:var(--accent);
+  box-shadow:0 0 14px var(--accent-glow);
+}
+
+.menu-toggle span{
+  display:block;
+  width:18px;
+  height:2px;
+  background:var(--text);
+  border-radius:2px;
+  transition:.25s;
+}
+
+.menu-toggle.active span:nth-child(1){
+  transform:translateY(7px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2){
+  opacity:0;
+}
+.menu-toggle.active span:nth-child(3){
+  transform:translateY(-7px) rotate(-45deg);
 }
 
 .logo {
@@ -77,6 +129,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .home-btn {
@@ -92,9 +145,6 @@ body {
   letter-spacing: 1px;
   transition: all 0.2s;
   box-shadow: 0 0 14px var(--accent-glow);
-  position:relative;
-  right:191%;
-
 }
 
 .home-btn:hover {
@@ -112,6 +162,7 @@ body {
   font-size: 13px;
   outline: none;
   width: 200px;
+  max-width: 100%;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -128,14 +179,61 @@ body {
     gap:20px;
     max-width:1400px;
     margin:24px auto;
+    padding:0 20px;
 }
 
 .sidebar{
-    width:230px;
+    width:260px;
     background:var(--surface);
     border:1px solid var(--border);
-    border-radius:18px;
     padding:22px;
+    position:fixed;
+    top:var(--navbar-h);
+    left:-300px;
+    height:calc(100vh - var(--navbar-h));
+    overflow-y:auto;
+    z-index:250;
+    transition:left .35s ease;
+    box-shadow:10px 0 34px rgba(0,0,0,.5);
+    border-radius:0 18px 18px 0;
+}
+
+.sidebar.open{
+    left:0;
+}
+
+.sidebar-close{
+    position:absolute;
+    top:14px;
+    right:14px;
+    background:transparent;
+    border:none;
+    color:var(--text-muted);
+    font-size:22px;
+    line-height:1;
+    cursor:pointer;
+}
+
+.sidebar-close:hover{
+    color:#fff;
+}
+
+.menu-overlay{
+    position:fixed;
+    top:var(--navbar-h);
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,.55);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease;
+    z-index:200;
+}
+
+.menu-overlay.active{
+    opacity:1;
+    pointer-events:all;
 }
 
 .sidebar h3{
@@ -194,6 +292,7 @@ body {
 .products{
     flex:1;
     min-width:0;
+    width:100%;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:16px;
@@ -281,63 +380,6 @@ body {
   transform: translateY(-1px);
   box-shadow: 0 0 20px var(--green-glow);
 }
-@media (max-width: 768px) {
-
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 15px;
-    gap: 15px;
-  }
-
-  .nav-right {
-    width: 100%;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .navbar input {
-    width: 100%;
-  }
-
-  .home-btn {
-    width: 100%;
-  }
-
-}
-
-
-@media (max-width: 768px) {
-
-  .products {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    width: 100%;
-  }
-
-  .card img {
-    width: 100%;
-    height: auto;
-  }
-
-}
-@media (max-width:768px){
-
-.sidebar ul{
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
-}
-
-.sidebar ul li{
-    white-space:nowrap;
-    flex-shrink:0;
-}
-
-}
-
 
 .price-filter{
     margin-top:15px;
@@ -383,8 +425,6 @@ body {
   letter-spacing: 1px;
   transition: all 0.2s;
   box-shadow: 0 0 14px var(--accent-glow);
-  position:relative;
-  right:105%;
 }
 .contact-btn:hover {
   background: #4f7ad6;
@@ -405,8 +445,6 @@ body {
   letter-spacing: 1px;
   transition: all 0.2s;
   box-shadow: 0 0 14px var(--accent-glow);
-  position:relative;
-  right:107%;
 }
 .about-us:hover{
   background: #4f7ad6;
@@ -414,7 +452,6 @@ body {
   box-shadow: 0 0 10px var(--accent-glow);
 }
 
-/* ===== Added: Spec filters (RAM / Processor / GPU / Screen / Storage) ===== */
 .spec-filter{
     margin-top:22px;
 }
@@ -450,12 +487,132 @@ body {
 .spec-filter select:last-child{
     margin-bottom:0;
 }
+
+@media (max-width: 900px) {
+  .container{
+    padding:0 16px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .nav-left{
+    width:100%;
+    justify-content:space-between;
+  }
+
+  .nav-right {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar input {
+    width: 100%;
+  }
+
+  .home-btn, .contact-btn, .about-us {
+    width: 100%;
+  }
+
+  .container{
+    margin:16px auto;
+    padding:0 14px;
+  }
+
+  .products {
+    grid-template-columns: 1fr;
+    gap:14px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .sidebar{
+    width:82%;
+    max-width:320px;
+    padding:20px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .logo{
+    font-size:18px;
+    letter-spacing:2px;
+  }
+
+  .menu-toggle{
+    width:32px;
+    height:32px;
+  }
+
+  .container{
+    padding:0 10px;
+    margin:14px auto;
+  }
+
+  .card{
+    padding:14px 10px 12px;
+  }
+
+  .card h4{
+    font-size:14px;
+  }
+
+  .price{
+    font-size:14px;
+  }
+
+  .btn{
+    padding:6px 14px;
+    font-size:11px;
+  }
+
+  .sidebar{
+    width:90%;
+    max-width:280px;
+    padding:16px;
+  }
+
+  .spec-filter select, #priceInput, .navbar input{
+    font-size:12px;
+  }
+
+  .home-btn, .contact-btn, .about-us{
+    font-size:13px;
+    padding:8px 14px;
+  }
+
+}
 </style>
 </head>
 <body>
 
 <div class="navbar">
-  <div class="logo">DEVPROS</div>
+  <div class="nav-left">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="logo">DEVPROS</div>
+  </div>
   <div class="nav-right">
     <button class="home-btn" onclick="window.location.href='index.html'">Home</button>
     <button class="contact-btn" onclick="window.location.href='contact.html'">Contact</button>
@@ -464,9 +621,13 @@ body {
   </div>
 </div>
 
+<div class="menu-overlay" id="menuOverlay"></div>
+
 <div class="container">
 
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
+
+<button class="sidebar-close" id="sidebarClose" aria-label="Close menu">&times;</button>
 
 <h3>Filter By Brand</h3>
 
@@ -623,13 +784,11 @@ const cards = document.querySelectorAll(".card");
 const slider = document.getElementById("priceSlider");
 let currentBrand = "all";
 
-
 const ramFilter = document.getElementById("ramFilter");
 const processorFilter = document.getElementById("processorFilter");
 const gpuFilter = document.getElementById("gpuFilter");
 const screenFilter = document.getElementById("screenFilter");
 const storageFilter = document.getElementById("storageFilter");
-
 
 function applyAllFilters(){
 
@@ -685,6 +844,10 @@ currentBrand = category.dataset.brand;
 
 applyAllFilters();
 
+if(window.innerWidth <= 768){
+    closeMenu();
+}
+
 });
 
 });
@@ -704,12 +867,48 @@ priceInput.addEventListener("input", () => {
 
 });
 
-
 ramFilter.addEventListener("change", applyAllFilters);
 processorFilter.addEventListener("change", applyAllFilters);
 gpuFilter.addEventListener("change", applyAllFilters);
 screenFilter.addEventListener("change", applyAllFilters);
 storageFilter.addEventListener("change", applyAllFilters);
+
+const navbar = document.querySelector(".navbar");
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.getElementById("sidebar");
+const menuOverlay = document.getElementById("menuOverlay");
+const sidebarClose = document.getElementById("sidebarClose");
+
+function syncNavbarHeight(){
+    document.documentElement.style.setProperty("--navbar-h", navbar.offsetHeight + "px");
+}
+
+syncNavbarHeight();
+window.addEventListener("resize", syncNavbarHeight);
+window.addEventListener("load", syncNavbarHeight);
+
+function openMenu(){
+    sidebar.classList.add("open");
+    menuOverlay.classList.add("active");
+    menuToggle.classList.add("active");
+}
+
+function closeMenu(){
+    sidebar.classList.remove("open");
+    menuOverlay.classList.remove("active");
+    menuToggle.classList.remove("active");
+}
+
+menuToggle.addEventListener("click", () => {
+    if(sidebar.classList.contains("open")){
+        closeMenu();
+    } else {
+        openMenu();
+    }
+});
+
+menuOverlay.addEventListener("click", closeMenu);
+sidebarClose.addEventListener("click", closeMenu);
 
 </script>
 

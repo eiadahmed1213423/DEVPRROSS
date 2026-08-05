@@ -68,6 +68,11 @@ body {
   top: 0;
   z-index: 300;
   flex-wrap: wrap;
+  transition: transform 0.35s ease;
+}
+
+.navbar.hide{
+  transform: translateY(-100%);
 }
 
 .nav-left{
@@ -886,6 +891,18 @@ function syncNavbarHeight(){
 syncNavbarHeight();
 window.addEventListener("resize", syncNavbarHeight);
 window.addEventListener("load", syncNavbarHeight);
+
+let lastScroll = 0;
+
+window.addEventListener("scroll", () => {
+    let current = window.pageYOffset;
+    if (current > lastScroll && current > 80) {
+        navbar.classList.add("hide");
+    } else {
+        navbar.classList.remove("hide");
+    }
+    lastScroll = current;
+});
 
 function openMenu(){
     sidebar.classList.add("open");

@@ -150,6 +150,9 @@ body {
   letter-spacing: 1px;
   transition: all 0.2s;
   box-shadow: 0 0 14px var(--accent-glow);
+  position: relative;
+  right: 850px;
+  
 }
 
 .home-btn:hover {
@@ -169,6 +172,8 @@ body {
   width: 200px;
   max-width: 100%;
   transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+  right: 50px;
 }
 
 .navbar input::placeholder { color: var(--text-muted); }
@@ -430,6 +435,8 @@ body {
   letter-spacing: 1px;
   transition: all 0.2s;
   box-shadow: 0 0 14px var(--accent-glow);
+  right: 850px;
+  position: relative;
 }
 .contact-btn:hover {
   background: #4f7ad6;
@@ -450,6 +457,8 @@ body {
   letter-spacing: 1px;
   transition: all 0.2s;
   box-shadow: 0 0 14px var(--accent-glow);
+  position: relative;
+  right: 850px;
 }
 .about-us:hover{
   background: #4f7ad6;
@@ -605,6 +614,233 @@ body {
   }
 
 }
+
+.cart-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  position: relative;
+  left: 1480px;
+  bottom: 50px;
+  z-index: 400;
+}
+
+.cart-btn:hover {
+  border-color: var(--green);
+  box-shadow: 0 0 14px var(--green-glow);
+}
+
+.cart-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--green);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 0 8px var(--green-glow);
+}
+
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -380px;
+  width: 340px;
+  max-width: 85%;
+  height: 100vh;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  box-shadow: -10px 0 34px rgba(0,0,0,.5);
+  z-index: 500;
+  transition: right .35s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+}
+
+.cart-sidebar.open {
+  right: 0;
+}
+
+.cart-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.cart-sidebar-header h3 {
+  color: white;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+.cart-sidebar-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cart-sidebar-close:hover {
+  color: #fff;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.cart-item-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--surface2);
+  flex-shrink: 0;
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.cart-item-name {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cart-item-price {
+  color: var(--green);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.cart-item-remove {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.cart-item-remove:hover {
+  color: #ef4444;
+}
+
+.cart-empty {
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.cart-total {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.cart-total span:last-child {
+  color: var(--green);
+  font-weight: 700;
+  text-shadow: 0 0 10px var(--green-glow);
+}
+
+.cart-confirm-btn {
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  box-shadow: 0 0 14px var(--green-glow);
+}
+
+.cart-confirm-btn:hover {
+  background: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px var(--green-glow);
+}
+
+.cart-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  z-index: 490;
+}
+
+.cart-sidebar-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+@media (max-width: 480px) {
+  .cart-sidebar {
+    width: 300px;
+    padding: 18px;
+  }
+}
+
+
 </style>
 </head>
 <body>
@@ -624,6 +860,27 @@ body {
     <button class="about-us" onclick="window.location.href='About.html'">About Us</button>
     <input type="text" placeholder="Search products...">
   </div>
+</div>
+<button class="cart-btn" id="cartToggle" aria-label="Cart">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.1 15.9 4.5 17 5.4 17H17M17 17C15.9 17 15 17.9 15 19C15 20.1 15.9 21 17 21C18.1 21 19 20.1 19 19C19 17.9 18.1 17 17 17ZM9 19C9 20.1 8.1 21 7 21C5.9 21 5 20.1 5 19C5 17.9 5.9 17 7 17C8.1 17 9 17.9 9 19Z" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span class="cart-badge" id="cartBadge">0</span>
+</button>
+
+<div class="cart-sidebar-overlay" id="cartOverlay"></div>
+
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-sidebar-header">
+    <h3>Your Cart</h3>
+    <button class="cart-sidebar-close" id="cartSidebarClose" aria-label="Close cart">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-total">
+    <span>Total</span>
+    <span id="cartTotal">$0</span>
+  </div>
+  <button class="cart-confirm-btn" id="confirmOrderBtn">Confirm Order</button>
 </div>
 
 <div class="menu-overlay" id="menuOverlay"></div>
@@ -687,7 +944,6 @@ body {
 
 </div>
 
-
 <div class="spec-filter">
 
     <h3 style="margin-top:4px;">Specifications</h3>
@@ -746,7 +1002,7 @@ body {
 
         <div class="card" data-brand="apple" data-price="650"
           data-ram="8GB" data-processor="none" data-gpu="none" data-screen="13.6" data-storage="256GB">
-            <img src="Apple-MacBook-Air-2-up-front-240304-1536x612.webp" alt="Macbook Air 2025">
+            <img src="images/Apple-MacBook-Air-2-up-front-240304-1536x612.webp" alt="Macbook Air 2025">
             <h4>Macbook Air 2025</h4>
             <div class="price">$650</div>
             <button class="btn">Buy</button>
@@ -754,7 +1010,7 @@ body {
 
         <div class="card" data-brand="acer" data-price="350"
           data-ram="8GB" data-processor="i5" data-gpu="2GB" data-screen="15.6" data-storage="512GB">
-            <img src="cde9877d-9c98-4b2b-96c5-c23f9d94ec24.jpg" alt="Acer Aspire 5">
+            <img src="images/cde9877d-9c98-4b2b-96c5-c23f9d94ec24.jpg" alt="Acer Aspire 5">
             <h4>Acer Aspire 5</h4>
             <div class="price">$350</div>
             <button class="btn">Buy</button>
@@ -762,15 +1018,23 @@ body {
 
         <div class="card" data-brand="asus" data-price="420"
             data-ram="16GB" data-processor="i7" data-gpu="4GB" data-screen="15.6" data-storage="512GB">
-            <img src="res_4f9b3e6f45190e356241ff1361d3e248.avif" alt="Asus TUF F15">
+            <img src="images/res_4f9b3e6f45190e356241ff1361d3e248.avif" alt="Asus TUF F15">
             <h4>Asus TUF F15</h4>
             <div class="price">$420</div>
             <button class="btn">Buy</button>
         </div>
 
+        <div class="card" data-brand="apple" data-price="$1,119"
+          data-ram="12GB" data-processor="none" data-gpu="none" data-screen="6.9" data-storage="256GB">
+            <img src="images/apple-iphone-17-pro-max-cosmic-orange.webp" alt="Iphone 17 Pro Max">
+            <h4>Iphone 17 Pro Max</h4>
+            <div class="price">$1,119</div>
+            <button class="btn">Buy</button>
+        </div>
+
         <div class="card" data-brand="dell" data-price="545"
             data-ram="16GB" data-processor="i7" data-gpu="6GB" data-screen="17.6" data-storage="1TB">
-            <img src="download.webp" alt="Dell G17">
+            <img src="images/download.webp" alt="Dell G17">
             <h4>Dell G17</h4>
             <div class="price">$545</div>
             <button class="btn">Buy</button>
@@ -926,6 +1190,147 @@ menuToggle.addEventListener("click", () => {
 
 menuOverlay.addEventListener("click", closeMenu);
 sidebarClose.addEventListener("click", closeMenu);
+
+let cart = [];
+
+const cartToggle = document.getElementById("cartToggle");
+const cartSidebar = document.getElementById("cartSidebar");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartSidebarClose = document.getElementById("cartSidebarClose");
+const cartItemsEl = document.getElementById("cartItems");
+const cartTotalEl = document.getElementById("cartTotal");
+const cartBadge = document.getElementById("cartBadge");
+const confirmOrderBtn = document.getElementById("confirmOrderBtn");
+
+function renderCart(){
+
+    cartItemsEl.innerHTML = "";
+
+    if(cart.length === 0){
+        cartItemsEl.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+    } else {
+        cart.forEach((item, index) => {
+
+            const itemEl = document.createElement("div");
+            itemEl.className = "cart-item";
+            itemEl.innerHTML = `
+                <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+                <div class="cart-item-info">
+                    <span class="cart-item-name">${item.name}</span>
+                    <span class="cart-item-price">$${item.price}</span>
+                </div>
+                <button class="cart-item-remove" data-index="${index}">&times;</button>
+            `;
+            cartItemsEl.appendChild(itemEl);
+
+        });
+    }
+
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    cartTotalEl.textContent = "$" + total;
+
+    if(cart.length > 0){
+        cartBadge.style.display = "flex";
+        cartBadge.textContent = cart.length;
+    } else {
+        cartBadge.style.display = "none";
+    }
+
+    document.querySelectorAll(".cart-item-remove").forEach(removeBtn => {
+        removeBtn.addEventListener("click", () => {
+            const index = Number(removeBtn.dataset.index);
+            cart.splice(index, 1);
+            renderCart();
+        });
+    });
+
+}
+
+function openCart(){
+    cartSidebar.classList.add("open");
+    cartOverlay.classList.add("active");
+}
+
+function closeCart(){
+    cartSidebar.classList.remove("open");
+    cartOverlay.classList.remove("active");
+}
+
+cartToggle.addEventListener("click", openCart);
+cartOverlay.addEventListener("click", closeCart);
+cartSidebarClose.addEventListener("click", closeCart);
+
+document.querySelectorAll(".card .btn").forEach(buyBtn => {
+
+    buyBtn.addEventListener("click", () => {
+
+        const card = buyBtn.closest(".card");
+        const name = card.querySelector("h4").textContent;
+        const price = Number(card.dataset.price);
+        const img = card.querySelector("img").getAttribute("src");
+
+        cart.push({ name, price, img });
+
+        renderCart();
+        openCart();
+
+    });
+
+});
+
+confirmOrderBtn.addEventListener("click", () => {
+
+    if(cart.length === 0){
+        return;
+    }
+
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+    let message = "New order from DEVPROS website:\n\n";
+
+    cart.forEach(item => {
+        message += item.name + " - $" + item.price + "\n";
+    });
+
+    message += "\nTotal: $" + total;
+
+    confirmOrderBtn.disabled = true;
+    confirmOrderBtn.textContent = "Sending...";
+
+    fetch("https://formspree.io/f/mbgrypdk", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            email: "eiadtaha2020@gmai.com",
+            message: message
+        })
+    })
+    .then(response => {
+        if(response.ok){
+            confirmOrderBtn.textContent = "Order Sent!";
+            cart = [];
+            renderCart();
+            setTimeout(() => {
+                confirmOrderBtn.disabled = false;
+                confirmOrderBtn.textContent = "Confirm Order";
+                closeCart();
+            }, 1800);
+        } else {
+            confirmOrderBtn.disabled = false;
+            confirmOrderBtn.textContent = "Failed, Try Again";
+        }
+    })
+    .catch(() => {
+        confirmOrderBtn.disabled = false;
+        confirmOrderBtn.textContent = "Failed, Try Again";
+    });
+
+});
+
+renderCart();
 
 </script>
 
